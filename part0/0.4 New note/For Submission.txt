@@ -1,0 +1,27 @@
+title Form Submission
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Server:
+Server responds with a 302 status code (URL redirect)
+to https://studies.cs.helsinki.fi/exampleapp/notes
+end note 
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: notes.html
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: main.js
+
+note over Browser:
+browser starts executing js-code
+that requests JSON data from server 
+which contains the new data sent
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+note over Browser:
+browser continue executing the js-code
+and renders the JSON data
+end note
