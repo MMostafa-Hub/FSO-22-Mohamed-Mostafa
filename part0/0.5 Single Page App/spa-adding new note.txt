@@ -1,0 +1,15 @@
+title Single Page App
+
+Browser->Server: HTTP POST /exampleapp/new_note_spa
+
+note right of Server:
+adds the new note to the database
+so the status code is 201 
+(request has succeeded 
+and has led to the creation of a resource)
+end note
+
+note right of Browser: 
+The JS code adds the new note to the list of notes and 
+renders the new list of notes 
+end note
