@@ -17,25 +17,19 @@ const Stat = ({ variable, value }) => {
   );
 };
 export default function App() {
-  // const [feedback, setFeedback] = useState({ good: 0, neutral: 0, bad: 0 });
   const [goodCounter, setGoodCounter] = useState(0);
   const [neutralCounter, setNeutralCounter] = useState(0);
   const [badCounter, setBadCounter] = useState(0);
 
-  // increment feedback based on the type of feedback
-  // const increment = (type) => () => {
-  //   switch (type) {
-  //     case "good":
-  //       setFeedback({ ...feedback, good: feedback.good + 1 });
-  //       break;
-  //     case "neutral":
-  //       setFeedback({ ...feedback, neutral: feedback.neutral + 1 });
-  //       break;
-  //     case "bad":
-  //       setFeedback({ ...feedback, bad: feedback.bad + 1 });
-  //       break;
-  //   }
-  // };
+  let totalFeedbacks = goodCounter + neutralCounter + badCounter;
+  const calculateAverageFeedback = (
+    goodCounter,
+    badCounter,
+    totalFeedbacks
+  ) => {
+    return (goodCounter + badCounter * -1) / totalFeedbacks;
+  };
+
   const incrementGoodCounter = () => {
     setGoodCounter(goodCounter + 1);
   };
@@ -45,6 +39,10 @@ export default function App() {
   const incrementBadCounter = () => {
     setBadCounter(badCounter + 1);
   };
+  const calculatePositivePercentage = (goodCounter, totalFeedbacks) => {
+    return String(100 * (goodCounter / totalFeedbacks)) + "%";
+  };
+
   return (
     <>
       <Headline text="give feedback" />
@@ -57,6 +55,19 @@ export default function App() {
       <Stat variable="good" value={goodCounter} />
       <Stat variable="neutral" value={neutralCounter} />
       <Stat variable="bad" value={badCounter} />
+      <Stat variable="all" value={totalFeedbacks} />
+      <Stat
+        variable="average"
+        value={calculateAverageFeedback(
+          goodCounter,
+          badCounter,
+          totalFeedbacks
+        )}
+      />
+      <Stat
+        variable="positive"
+        value={calculatePositivePercentage(goodCounter, totalFeedbacks)}
+      />
     </>
   );
 }
