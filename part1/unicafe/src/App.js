@@ -9,11 +9,16 @@ const Headline = ({ text }) => {
   return <h1>{text}</h1>;
 };
 // statistic Component
-const Stat = ({ variable, value }) => {
+const Statistic = ({ variable, value }) => {
   return (
-    <p>
-      {variable} {value}
-    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>{variable}</td>
+          <td>{value}</td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 const ShowStatistics = ({ goodCounter, neutralCounter, badCounter }) => {
@@ -36,11 +41,11 @@ const ShowStatistics = ({ goodCounter, neutralCounter, badCounter }) => {
   if (totalFeedbacks) {
     return (
       <>
-        <Stat variable="good" value={goodCounter} />
-        <Stat variable="neutral" value={neutralCounter} />
-        <Stat variable="bad" value={badCounter} />
-        <Stat variable="all" value={totalFeedbacks} />
-        <Stat
+        <Statistic variable="good" value={goodCounter} />
+        <Statistic variable="neutral" value={neutralCounter} />
+        <Statistic variable="bad" value={badCounter} />
+        <Statistic variable="all" value={totalFeedbacks} />
+        <Statistic
           variable="average"
           value={calculateAverageFeedback(
             goodCounter,
@@ -48,7 +53,7 @@ const ShowStatistics = ({ goodCounter, neutralCounter, badCounter }) => {
             totalFeedbacks
           )}
         />
-        <Stat
+        <Statistic
           variable="positive"
           value={calculatePositivePercentage(goodCounter, totalFeedbacks)}
         />
