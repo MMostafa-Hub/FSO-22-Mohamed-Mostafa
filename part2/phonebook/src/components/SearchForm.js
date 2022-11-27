@@ -12,7 +12,11 @@ const SearchForm = ({
     let personName = event.target.value;
     if (personName === "") setPersonsToShow(persons);
     else {
-      setPersonsToShow(persons.filter((person) => person.name === personName));
+      setPersonsToShow(
+        persons.filter((person) =>
+          person.name.toLowerCase().match(personName.toLowerCase())
+        )
+      );
     }
     setPersonSearch(personName);
   };
